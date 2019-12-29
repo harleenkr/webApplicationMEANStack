@@ -1,0 +1,79 @@
+<div class="row">
+
+    <div class="col s12">
+        <div class="card">
+            <div class="card-content white-text">
+                <div class="row">
+                    <div class="row titleStyling">
+                      MEAN STACK WEB APPLICATION
+
+                    </div>
+                    <div class="col s4 formDivStyling">
+                        <form class="stylingForm" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+                            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="contactService.selectedContact._id">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input class="space-top" type="text" name="name" #name="ngModel" [(ngModel)]="contactService.selectedContact.name" placeholder="Enter Full Name" required>
+                                <label>Name :
+                                    <label class="red-text">*</label>
+                                </label>
+                            </div>
+                            <div class="input-field col s12 validatSpace" *ngIf="(name.invalid && name.touched) || name.dirty">
+                                <p *ngIf="name.errors?.required" class="text-danger validatColor">Name is required</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="email" class="space-top" email="email" #email="ngModel" [(ngModel)]="contactService.selectedContact.email" name="email" placeholder="Enter Email Address" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required> <!--[ngModelOptions]="{standalone: true}"-->
+                                <label>Email :
+                                    <label class="red-text">*</label>
+                                </label>
+                            </div>
+                            <div class="input-field col s12 validatSpace" *ngIf="(email.invalid && email.touched) || email.dirty">
+                                <p *ngIf="email.errors?.required" class="text-danger validatColor">Email is required</p>
+                                <p *ngIf="email.errors?.pattern" class="text-danger validatColor">Please provide a valid email address</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input class="space-top" type="text" phoneNo="phoneNo" #phoneNo="ngModel" [(ngModel)]="contactService.selectedContact.phoneNo" pattern="^[0-9]{10}$" name="phoneNo" placeholder="Enter Phone Number" required> <!--[ngModelOptions]="{standalone: true}"-->
+                                <label>Phone Number :
+                                    <label class="red-text">*</label>
+                                </label>
+                            </div>
+                            <div class="input-field col s12 validatSpace" *ngIf="(phoneNo.invalid && phoneNo.touched) || phoneNo.dirty">
+                                <p *ngIf="phoneNo.errors?.required" class="text-danger validatColor">Phone Number is required</p>
+                                <p *ngIf="phoneNo.errors?.pattern" class="text-danger validatColor">Please enter a valid phone number</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                         <div class="input-field col s12">
+                           <button class="btn btn-custom right" type="button" (click)="resetForm(contactForm)">Reset</button>
+                           <button class="btn btn-custom right" type="submit" [disabled]="!contactForm.valid">Submit</button>
+                         </div>
+                        </div>
+                        </form>
+                    </div>
+                    <div class="col s7 tableSpace">
+                        <div class="headingStyle">CONTACTS LIST</div>
+                        <table class="responsive-table highlight">
+                            <thead>
+                                <tr class="trStyling">
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone Number</th>
+                                </tr>
+                            </thead>
+                            <tr class="trStyling" *ngFor="let con of contactService.contacts">
+                                <td>{{con.name}}</td>
+                                <td>{{con.email}}</td>
+                                <td>{{con.phoneNo}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
