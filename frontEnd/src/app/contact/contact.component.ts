@@ -4,8 +4,6 @@ import { NgForm } from '@angular/forms';
 import { ContactService } from '../shared/contact.service'; 
 import { Contact } from '../shared/contact.model';
 
-// declare var M: any;
-
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -37,7 +35,6 @@ export class ContactComponent implements OnInit {
    this.contactService.postContact(form.value).subscribe((res) => {
    this.resetForm(form);
    this.refreshEmployeeList();
-   // M.toast({ html: 'Saved successfully', classes: 'rounded' });
    });
   }
 
