@@ -6,8 +6,16 @@
                 <div class="row">
                     <div class="row titleStyling">
                       MEAN STACK WEB APPLICATION
-
                     </div>
+                        <div class="row titleSearchStyling">
+                          <div>
+                            <span class="spanStyling">Results to display:</span>
+                            <!-- <input type="text" class="form-control" ng-model="number"> -->
+                            <input type="text" class="searchStyling" name="search" placeholder="Search for ..." required>
+                            <button class="btn btnEdit filterStyling" type="button" (click)="onEdit(con)">Apply Filter</button>
+                            <button class="btn btnEdit showStyling" type="button" (click)="onEdit(con)">Show All</button>
+                        </div>
+                        </div>
                     <div class="col s4 formDivStyling">
                         <form class="stylingForm" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
                             <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="contactService.selectedContact._id">
@@ -56,18 +64,23 @@
                     </div>
                     <div class="col s7 tableSpace">
                         <div class="headingStyle">CONTACTS LIST</div>
-                        <table class="responsive-table highlight">
+                        <table class="responsive-table highlight tabStyling">
                             <thead>
                                 <tr class="trStyling">
-                                    <th>Name</th>
+                                    <th class="nameStyling">Name</th>
                                     <th>Email</th>
                                     <th>Phone Number</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tr class="trStyling" *ngFor="let con of contactService.contacts">
-                                <td>{{con.name}}</td>
+                                <td class="tdStyling">{{con.name}}</td>
                                 <td>{{con.email}}</td>
                                 <td>{{con.phoneNo}}</td>
+                                <td>
+                                    <button class="btn btnEdit" type="button" (click)="onEdit(con)">Edit</button>
+                                    <button class="btn" type="button" (click)="onDelete(con._id,contactForm)">Delete</button>
+                                </td>
                             </tr>
                         </table>
                     </div>

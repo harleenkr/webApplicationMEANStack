@@ -31,7 +31,7 @@ router.put('/:id', (req, res) => {
         phoneNo: req.body.phoneNo
     };
 
-    con.findByIdAndUpdate(req.params.id, { $set: emp }, { new: true }, (err, doc) => {
+    con.findByIdAndUpdate(req.params.id, { $set: con }, { new: true }, (err, doc) => {
         if (!err) { res.send(doc); }
         else { console.log('Error in Contact Update :' + JSON.stringify(err, undefined, 2)); }
     });
@@ -46,6 +46,16 @@ router.post('/', (req, res) => {
     con.save((err, doc) => {
         if (!err) { res.send(doc); }
         else { console.log('Error in Contact Save :' + JSON.stringify(err, undefined, 2)); }
+    });
+});
+
+router.delete('/:id', (req, res) => {
+    if (!ObjectId.isValid(req.params.id))
+        return res.status(400).send(`No record with given id : ${req.params.id}`);
+
+    Contact.findByIdAndRemove(req.params.id, (err, doc) => {
+        if (!err) { res.send(doc); }
+        else { console.log('Error in Contacts Delete :' + JSON.stringify(err, undefined, 2)); }
     });
 });
 

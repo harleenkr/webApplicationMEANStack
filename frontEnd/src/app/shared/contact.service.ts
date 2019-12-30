@@ -22,4 +22,12 @@ readonly baseURL = 'http://localhost:3030/ContactMEAN';
     return this.http.get(this.baseURL);
   }
 
+  putContact(con: Contact) {
+    return this.http.put(this.baseURL + `/${con._id}`, con);
+  }
+
+  deleteContact(_id: string) {
+    return this.http.delete(this.baseURL + `/${_id}`);
+  }
+
 }
