@@ -80,13 +80,20 @@ span.spanStyling {
 button.filterStyling, button.showStyling {
     margin-left: 10px !important;
     margin-top: -4px !important;
+    margin-right: 10px !important;
 }
 
 button.filterStyling {
     background-color: cornflowerblue!important; 
 }
+
+button.clearStyling {
+    background-color: #ed7208 !important;
+    margin-bottom: 5px !important;
+
+}
 div.titleSearchStyling {
-    margin-left: 610px !important;
+    margin-left: 604px !important;
     font-weight: 600;
     font-size: larger;
 }

@@ -11,8 +11,9 @@
                           <div>
                             <span class="spanStyling">Results to display:</span>
                             <!-- <input type="text" class="form-control" ng-model="number"> -->
-                            <input type="text" class="searchStyling" name="search" placeholder="Search for ..." required>
+                            <input type="text" class="searchStyling" name="search" placeholder="Search for ..." [(ngModel)]="searchKeyword" required>
                             <button class="btn btnEdit filterStyling" type="button" (click)="onEdit(con)">Apply Filter</button>
+                            <button class="btn btnEdit clearStyling" type="button" (click)="onEdit(con)">Clear</button>
                             <button class="btn btnEdit showStyling" type="button" (click)="onEdit(con)">Show All</button>
                         </div>
                         </div>
