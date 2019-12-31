@@ -7,16 +7,20 @@
                     <div class="row titleStyling">
                       MEAN STACK WEB APPLICATION
                     </div>
-                        <div class="row titleSearchStyling">
+                        <div class="row titleNumberStyling">
                           <div>
                             <span class="spanStyling">Results to display:</span>
-                            <!-- <input type="text" class="form-control" ng-model="number"> -->
-                            <input type="text" class="searchStyling" name="search" placeholder="Search for ..." [(ngModel)]="searchKeyword" required>
-                            <button class="btn btnEdit filterStyling" type="button" (click)="onEdit(con)">Apply Filter</button>
-                            <button class="btn btnEdit clearStyling" type="button" (click)="onEdit(con)">Clear</button>
-                            <button class="btn btnEdit showStyling" type="button" (click)="onEdit(con)">Show All</button>
+                            <input type="text" class="searchStyling" name="searchNumber" placeholder="Enter a number of contacts you want to display" [(ngModel)]="number">
                         </div>
                         </div>
+                        <div class="row titleSearchStyling">
+                            <div>
+                              <input type="text" class="searchStyling" name="search" placeholder="Search for ..." [(ngModel)]="searchKeyword" (input)="Search()">
+                              <button class="btn btnEdit filterStyling" type="button">Search</button> <!--(click)="onSearch(searchKeyword, number)"-->
+                              <button class="btn btnEdit clearStyling" type="button" (click)="onClear()">Clear</button>
+                              <button class="btn btnEdit showStyling" type="button" (click)="onShow(true, contactService.contacts)">Show All</button>
+                          </div>
+                          </div>
                     <div class="col s4 formDivStyling">
                         <form class="stylingForm" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
                             <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="contactService.selectedContact._id">
@@ -65,6 +69,7 @@
                     </div>
                     <div class="col s7 tableSpace">
                         <div class="headingStyle">CONTACTS LIST</div>
+                        <div *ngIf="showAllContacts === true"> <!--*ngIf="showAllContacts === true || searchKeyword"-->
                         <table class="responsive-table highlight tabStyling">
                             <thead>
                                 <tr class="trStyling">
@@ -74,7 +79,7 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tr class="trStyling" *ngFor="let con of contactService.contacts">
+                            <tr class="trStyling" *ngFor="let con of contactService.contacts"> <!--| searchFilter: searchKeyword --> <!--*ngIf="showAllContacts === true" --> <!-- | filter:searchFilter-->
                                 <td class="tdStyling">{{con.name}}</td>
                                 <td>{{con.email}}</td>
                                 <td>{{con.phoneNo}}</td>
@@ -85,9 +90,9 @@
                             </tr>
                         </table>
                     </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>

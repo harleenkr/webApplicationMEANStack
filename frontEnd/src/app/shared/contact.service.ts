@@ -23,7 +23,7 @@ readonly baseURL = 'http://localhost:3030/ContactMEAN';
   }
 
   putContact(con: Contact) {
-    return this.http.put(this.baseURL + `/${con._id}`, con);
+    return this.http.post(this.baseURL, con);
   }
 
   deleteContact(_id: string) {

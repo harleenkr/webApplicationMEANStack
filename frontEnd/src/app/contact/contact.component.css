@@ -90,10 +90,14 @@ button.filterStyling {
 button.clearStyling {
     background-color: #ed7208 !important;
     margin-bottom: 5px !important;
-
 }
-div.titleSearchStyling {
+
+div.titleSearchStyling, div.titleNumberStyling {
     margin-left: 604px !important;
     font-weight: 600;
     font-size: larger;
+}
+
+div.titleNumberStyling {
+    margin-top: -15px !important;
 }

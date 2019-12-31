@@ -31,22 +31,31 @@ router.put('/:id', (req, res) => {
         phoneNo: req.body.phoneNo
     };
 
-    con.findByIdAndUpdate(req.params.id, { $set: con }, { new: true }, (err, doc) => {
+    con.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
         if (!err) { res.send(doc); }
         else { console.log('Error in Contact Update :' + JSON.stringify(err, undefined, 2)); }
     });
 });
 
 router.post('/', (req, res) => {
-    var con = new Contact({
-        name: req.body.name,
-        email: req.body.email,
-        phoneNo: req.body.phoneNo
-    });
-    con.save((err, doc) => {
-        if (!err) { res.send(doc); }
-        else { console.log('Error in Contact Save :' + JSON.stringify(err, undefined, 2)); }
-    });
+
+    if (req.body._id === '') {
+        var con = new Contact({
+            name: req.body.name,
+            email: req.body.email,
+            phoneNo: req.body.phoneNo
+        });
+        con.save((err, doc) => {
+            if (!err) { res.send(doc); }
+            else { console.log('Error in Contact Save :' + JSON.stringify(err, undefined, 2)); }
+        });
+    } else {
+        Contacts.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
+            if (!err) { res.send(doc); }
+            else { console.log('Error in Contact Update :' + JSON.stringify(err, undefined, 2)); }
+        });
+    }
+
 });
 
 router.delete('/:id', (req, res) => {
