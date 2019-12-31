@@ -72,25 +72,14 @@ export class ContactComponent implements OnInit {
   }
 
   onSearch(searchKeyword, number) {
-    console.log("function is called");
-    console.log("searchKeyword value", searchKeyword);
-    console.log("number value", number);
     if (searchKeyword) {
-      console.log("searchKeyword",searchKeyword);
       if (searchKeyword.length > 0) {
-        console.log("searchKeyword.length",searchKeyword.length);
         this.limit = 0;
-        console.log("this.limit",this.limit);
         this.searchFilter = searchKeyword;
-        console.log("this.searchFilter",this.searchFilter);
         this.limit = number;
-        console.log("this.limit",this.limit);
       } else {
-        console.log("else part of searchKeyword");
         this.searchFilter = undefined;
-        console.log("this.searchFilter",this.searchFilter);
         this.limit = 0;
-        console.log("this.limit",this.limit);
       }
     }
     else {
@@ -101,13 +90,9 @@ export class ContactComponent implements OnInit {
   }
 
   Search() {
-    // if (this.searchKeyword !== null) {
     this.contactService.contacts = this.contactService.contacts.filter(res => {
       return (res.name.toLocaleLowerCase().match(this.searchKeyword.toLocaleLowerCase()) || res.email.toLocaleLowerCase().match(this.searchKeyword.toLocaleLowerCase()));
     });
-  // } else {
-  //     return this.contactService.contacts;
-  // }
   }
 
   onClear() {
@@ -123,13 +108,9 @@ export class ContactComponent implements OnInit {
     if(this.contactService.contacts.length > 0) {
 
       this.showAllContacts = checkShow;
-      //this.contactService.contacts = Contact;
-      console.log("if this.showAllContacts",this.showAllContacts);
     }
     else {
       this.showAllContacts = false;
-      //this.contactService.contacts = Contact;
-      console.log("else this.showAllContacts",this.showAllContacts);
     }
   }
 }

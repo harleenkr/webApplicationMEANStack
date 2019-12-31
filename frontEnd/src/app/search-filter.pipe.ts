@@ -16,9 +16,6 @@ export class SearchFilterPipe implements PipeTransform {
 
     if (value !== undefined) {
       return value.filter(items => {
-        console.log("items in value", items);
-        console.log("items.name.startsWith(args)", items.name.startsWith(args));
-        console.log("items.email.startsWith(args)", items.email.startsWith(args));
         (items.name.startsWith(args) == true || items.email.startsWith(args) == true)
       });
     }
