@@ -6,6 +6,8 @@ Run 'npm install -g @angular/cli' to install CLI using npm package manager.
 
 Run 'ng new webApplicationMEANStack' to create the project.
 
+Run 'npm install' to install the node_modules.
+
 Run 'ng serve' to build the application and serve it locally, the server automatically rebuilds the app and reloads the page when you change amy of the source files.
 
 Download and install nodejs, npm, and mongodb.
@@ -33,4 +35,4 @@ Navigate to `http://localhost:3030/ContactMEAN` to see list of contacts from Mon
 
 # Database
 
-MongoDB database is used for storing all the contacts. Database name is - ContactsDB and Collection is - contacts. Postman can be used to test the APIs.
+MongoDB database is used for storing all the contacts. Created database and it's name is - ContactsDB and Collection is - contacts. Postman can be used to test the APIs.
