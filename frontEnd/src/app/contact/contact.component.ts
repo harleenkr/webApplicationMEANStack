@@ -19,6 +19,7 @@ export class ContactComponent implements OnInit {
   number: string;
   showMoreError: false;
   showAllContacts: boolean;
+  showContacts: any;
   constructor(private contactService: ContactService) { }
 
   ngOnInit() {
@@ -90,7 +91,7 @@ export class ContactComponent implements OnInit {
   }
 
   Search() {
-    this.contactService.contacts = this.contactService.contacts.filter(res => {
+    this.showContacts = this.contactService.contacts.filter(res => {
       return (res.name.toLocaleLowerCase().match(this.searchKeyword.toLocaleLowerCase()) || res.email.toLocaleLowerCase().match(this.searchKeyword.toLocaleLowerCase()));
     });
   }
@@ -106,8 +107,8 @@ export class ContactComponent implements OnInit {
 
   onShow(checkShow: boolean, Contact) {
     if(this.contactService.contacts.length > 0) {
-
       this.showAllContacts = checkShow;
+      this.contactService.contacts = Contact;
     }
     else {
       this.showAllContacts = false;

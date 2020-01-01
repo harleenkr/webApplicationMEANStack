@@ -10,13 +10,11 @@
                         <div class="row titleNumberStyling">
                           <div>
                             <span class="spanStyling">Results to display:</span>
-                            <input type="text" class="searchStyling" name="searchNumber" placeholder="Enter a number of contacts you want to display" [(ngModel)]="number">
                         </div>
                         </div>
                         <div class="row titleSearchStyling">
                             <div>
-                              <input type="text" class="searchStyling" name="search" placeholder="Search for ..." [(ngModel)]="searchKeyword" (input)="Search()">
-                              <button class="btn btnEdit filterStyling" type="button">Search</button> <!--(click)="onSearch(searchKeyword, number)"-->
+                              <input type="text" class="searchStyling" name="search" placeholder="Search for name/ email and press enter ..." [(ngModel)]="searchKeyword" (input)="Search()">
                               <button class="btn btnEdit clearStyling" type="button" (click)="onClear()">Clear</button>
                               <button class="btn btnEdit showStyling" type="button" (click)="onShow(true, contactService.contacts)">Show All</button>
                           </div>
@@ -37,7 +35,7 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input type="email" class="space-top" email="email" #email="ngModel" [(ngModel)]="contactService.selectedContact.email" name="email" placeholder="Enter Email Address" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required> <!--[ngModelOptions]="{standalone: true}"-->
+                                <input type="email" class="space-top" email="email" #email="ngModel" [(ngModel)]="contactService.selectedContact.email" name="email" placeholder="Enter Email Address" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
                                 <label>Email :
                                     <label class="red-text">*</label>
                                 </label>
@@ -67,9 +65,13 @@
                         </div>
                         </form>
                     </div>
+
+                    <div class="recordCountStyling" *ngIf="showAllContacts === true && !searchKeyword">Show Count of displayed records : {{contactService.contacts.length}} </div>
+                    <div class="recordCountStyling" *ngIf="searchKeyword">Show Count of displayed records : {{showContacts.length}} </div>
+
                     <div class="col s7 tableSpace">
                         <div class="headingStyle">CONTACTS LIST</div>
-                        <div *ngIf="showAllContacts === true"> <!--*ngIf="showAllContacts === true || searchKeyword"-->
+                        <div *ngIf="showAllContacts === true && !searchKeyword">
                         <table class="responsive-table highlight tabStyling">
                             <thead>
                                 <tr class="trStyling">
@@ -79,12 +81,31 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tr class="trStyling" *ngFor="let con of contactService.contacts"> <!--| searchFilter: searchKeyword --> <!--*ngIf="showAllContacts === true" --> <!-- | filter:searchFilter-->
+                            <tr class="trStyling" *ngFor="let con of contactService.contacts">
                                 <td class="tdStyling">{{con.name}}</td>
                                 <td>{{con.email}}</td>
                                 <td>{{con.phoneNo}}</td>
                                 <td>
-                                    <!-- <button class="btn btnEdit" type="button" (click)="onEdit(con)">Edit</button> -->
+                                    <button class="btn" type="button" (click)="onDelete(con._id,contactForm)">Delete</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div *ngIf="searchKeyword">
+                        <table class="responsive-table highlight tabStyling">
+                            <thead>
+                                <tr class="trStyling">
+                                    <th class="nameStyling">Name</th>
+                                    <th>Email</th>
+                                    <th>Phone Number</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tr class="trStyling" *ngFor="let con of showContacts">
+                                <td class="tdStyling">{{con.name}}</td>
+                                <td>{{con.email}}</td>
+                                <td>{{con.phoneNo}}</td>
+                                <td>
                                     <button class="btn" type="button" (click)="onDelete(con._id,contactForm)">Delete</button>
                                 </td>
                             </tr>
